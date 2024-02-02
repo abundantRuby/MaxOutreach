@@ -4,8 +4,10 @@ from email.mime.multipart import MIMEMultipart
 import random
 import time
 import datetime
+import pytz
 
-current_date = datetime.datetime.now()
+desired_time_zone = 'America/New_York'
+current_date = datetime.datetime.now(pytz.timezone(desired_time_zone))
 day_name = current_date.strftime("%A")
 CURRENT_DAY = day_name
 
