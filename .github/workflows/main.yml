@@ -10,3 +10,6 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+
+    - name: Run EMAILSENDER.py
+      run: python EMAILSENDER.py
