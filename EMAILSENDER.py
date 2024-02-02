@@ -65,7 +65,7 @@ def send_email(to_address, subject, body, sender_info):
 
 def main():
     # Email addresses to send to
-    TO_EMAIL_ADDRESSES = ["dysco712@gmail.com"]
+    TO_EMAIL_ADDRESSES = ["kppainter206@gmail.com", "info@johnnybpainting.com", "sam@secpainting.net", "office@pottspainting.com", "bluemonkeypainting@gmail.com", "unlimitedfinishpro@gmail.com", "office@leonzospainting.com", "contact@pinedapaintingllc.com", "BlueMonkeyPainting@gmail.com", "info@arclightpainting.com", "projects@gongorapainting.com", "team@latofonts.com", "Daren@PullensPainting.com", "dtrue@certapro.com", "orbepainting@gmail.com", "hanochpainting@gmail.com", "ironstoneconstruction@gmail.com", "istanbulpainting@gmail.com", "cornerstonepainting@comcast.net", "seatownpainting@gmail.com", "info@remontconstruction.com", "munozamilcar73@gmail.com", "gforcepainting@gmail.com", "office@ctcpp.com", "harborqualitypaintingllc@gmail.com", "AllcitiesMarHern@outlook.com", "office@thehometeamnw.com", "widespreadpainting@hotmail.com", "info@uniquepd.com", "glrgpainting@gmail.com", "info@apinchdifferent.com", "victoriouspaints@gmail.com", "malcolmsproservices@gmail.com", "cody@thirdeyepaintingservices.com", "info@bodhibuilders.com", "estimate@exteriorcrew.com", "todd@emeraldstate.com", "pmartpropaintingllc@gmail.com", "pricedrightpainting@gmail.com", "amitypainting@live.com", "office@seattlepaintingexperts.com", "info@gregorydill.com", "2mmhomeservices@gmail.com", "info@modernexteriorsolutions.com", "progreenpaintingwa@gmail.com", "Eirik@lonepainter.com", "contact@oikospaintingdesignllc.com", "Valorallc@gmail.com", "hglkingpaintingservices@gmail.com"]
 
     for to_address in TO_EMAIL_ADDRESSES:
         # Choose a random template and subject line
