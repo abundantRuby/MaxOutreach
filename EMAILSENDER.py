@@ -65,7 +65,7 @@ def send_email(to_address, subject, body, sender_info):
 
 def main():
     # Email addresses to send to
-    TO_EMAIL_ADDRESSES = ["dysco712@gmail.com", "iamdylanhoag@gmail.com", "dylan@mgmtwebsites.com", "dylanhoagdigital@gmail.com"]
+    TO_EMAIL_ADDRESSES = ["dysco712@gmail.com"]
 
     for to_address in TO_EMAIL_ADDRESSES:
         # Choose a random template and subject line
