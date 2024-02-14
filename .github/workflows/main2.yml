@@ -1,4 +1,4 @@
-name: RUN EMAILSENDER
+name: Step 1
 
 on:
   workflow_dispatch:
