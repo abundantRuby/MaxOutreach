@@ -1,0 +1,15 @@
+name: RUN EMAILSENDER
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Run STEP1.py
+      run: python STEP1.py
