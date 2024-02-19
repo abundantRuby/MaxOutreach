@@ -3,7 +3,13 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, unquote
 
 def extract_business_url(profile_url):
-    response = requests.get(profile_url)
+    try:
+        response = requests.get(profile_url)
+        response.raise_for_status()  # Raise an HTTPError for bad responses
+    except requests.exceptions.RequestException as e:
+        print(f"Error making request to {profile_url}: {e}")
+        return []
+
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # Select all links with href starting with "/biz_redir"
@@ -30,6 +36,7 @@ for profile_url in profile_urls:
     if business_urls:
         for url in business_urls:
             print(f'"{url}",')
+
 
 
 
