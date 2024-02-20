@@ -79,7 +79,7 @@ def main():
         send_email(to_address, subject, template, sender_info)
 
         # Random delay between emails (e.g., 30 to 90 seconds)
-        delay = random.uniform(30, 90)
+        delay = random.uniform(60, 120)
         time.sleep(delay)
 
 if __name__ == "__main__":
