@@ -36,7 +36,6 @@ def get_listing_urls(yelp_url, max_pages=5, results_per_page=50):
     all_listing_urls = set()
 
     for page in range(max_pages):
-        print('Started Page')
         start_offset = page * results_per_page
         city = get_city_from_url(yelp_url)
         api_url = "https://api.yelp.com/v3/businesses/search"
@@ -145,6 +144,8 @@ def main():
     extracted_emails = set.union(*extracted_emails_list)
 
     if extracted_emails:
+        print("Status Update: Finished Collecting Emails")
+        print('FINAL OUTPUT:')
         print(extracted_emails)
     else:
         print("ERROR: Failed to extract email addresses.")
@@ -180,15 +181,12 @@ for profile_url in ALL_PROFILE_URLS:
         ALL_BUSINESS_URLS.extend(business_urls)
 
 print("Status Update: Finished Collecting Website Url's")
-print(ALL_BUSINESS_URLS)
 
 # -- GETS EMAILS FROM WEBSITE URLS --
 
 print("Status Update: Collecting Emails from Website Url's")
 if __name__ == "__main__":
     main()
-print("Status Update: Finished Collecting Emails")
-
 
 
 
