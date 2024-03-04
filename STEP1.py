@@ -13,8 +13,8 @@ from multiprocessing import Pool
 # --------------------------------------- VARIABLES TO EXECUTE ---------------------------------------------------#
 # --------------------------------------------------------------------------------------------------------------- #
         
-yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=St.+George%2C+UT", 
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Yakima%2C+WA"
+yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=Meridian%2C+ID", 
+             "https://www.yelp.com/search?find_desc=painters&find_loc=McCall%2C+ID"
             ]
 
 search_term = "painters"
@@ -145,7 +145,7 @@ def main():
 
     if extracted_emails:
         print("Status Update: Finished Collecting Emails")
-        print('FINAL OUTPUT:')
+        print('-------------------- FINAL OUTPUT --------------------')
         print(list(extracted_emails))
     else:
         print("ERROR: Failed to extract email addresses.")
