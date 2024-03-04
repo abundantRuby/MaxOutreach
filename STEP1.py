@@ -177,14 +177,13 @@ for profile_url in ALL_PROFILE_URLS:
         ALL_BUSINESS_URLS.extend(business_urls)
 
 print("Status Update: Finished Collecting Website Url's")
-print(ALL_BUSINESS_URLS)
 
 # -- GETS EMAILS FROM WEBSITE URLS --
 
-#print("Status Update: Collecting Emails from Website Url's")
-#if __name__ == "__main__":
-#    main()
-#print("Status Update: Finished Collecting Emails")
+print("Status Update: Collecting Emails from Website Url's")
+if __name__ == "__main__":
+    main()
+print("Status Update: Finished Collecting Emails")
 
 
 
