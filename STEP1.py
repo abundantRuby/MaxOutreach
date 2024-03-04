@@ -146,7 +146,7 @@ def main():
     if extracted_emails:
         print("Status Update: Finished Collecting Emails")
         print('FINAL OUTPUT:')
-        print(extracted_emails)
+        print(list(extracted_emails))
     else:
         print("ERROR: Failed to extract email addresses.")
 
