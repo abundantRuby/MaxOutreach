@@ -11,5 +11,11 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install beautifulsoup4
+        pip install requests
+
     - name: Run STEP1.py
       run: python STEP1.py
