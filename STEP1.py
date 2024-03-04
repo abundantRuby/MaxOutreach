@@ -36,6 +36,7 @@ def get_listing_urls(yelp_url, max_pages=5, results_per_page=50):
     all_listing_urls = set()
 
     for page in range(max_pages):
+        print('Started Page')
         start_offset = page * results_per_page
         city = get_city_from_url(yelp_url)
         api_url = "https://api.yelp.com/v3/businesses/search"
@@ -111,7 +112,7 @@ def extract_emails_from_url(url):
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
         response = requests.get(url, headers=headers)
         response.raise_for_status()
-        soup = BeautifulSoup(response.text, 'html5lib')
+        soup = BeautifulSoup(response.text, 'lxml')
 
         emails = set()
         for text in soup.stripped_strings:
@@ -155,6 +156,8 @@ def main():
 
 # -- GETS PROFILE URLS FROM YELP LINKS --
         
+print('STARTED PROGRAM')
+        
 ALL_PROFILE_URLS = []
 
 for i in range(len(yelp_urls)):
@@ -177,6 +180,7 @@ for profile_url in ALL_PROFILE_URLS:
         ALL_BUSINESS_URLS.extend(business_urls)
 
 print("Status Update: Finished Collecting Website Url's")
+print(ALL_BUSINESS_URLS)
 
 # -- GETS EMAILS FROM WEBSITE URLS --
 
@@ -184,6 +188,8 @@ print("Status Update: Collecting Emails from Website Url's")
 if __name__ == "__main__":
     main()
 print("Status Update: Finished Collecting Emails")
+
+
 
 
 
