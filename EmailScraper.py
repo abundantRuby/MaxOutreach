@@ -148,7 +148,7 @@ def main():
         print('-------------------- FINAL OUTPUT --------------------')
         print(list(extracted_emails))
     else:
-        print("CRUCIAL FUCKING ERROR: Failed to extract email addresses.")
+        print("CRITICAL FUCKING ERROR: Failed to extract email addresses.")
 
 # --------------------------------------------------------------------------------------------------------------- #
 # --------------------------------------------- MAIN CODE --------------------------------------------------------#
