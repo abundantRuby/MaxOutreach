@@ -31,6 +31,6 @@ This program automates the process of lead generation and email outreach. It scr
 
 ## Other
 
-Your comments or suggestions are extremely appreciated, so please reach out!
-Email 📧: iamdylanhoag@gmail.com
--Dylan Hoag 😊
+Your comments or suggestions are extremely appreciated, so please reach out!  
+Email 📧: iamdylanhoag@gmail.com  
+-Dylan Hoag 😊  
