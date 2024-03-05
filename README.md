@@ -4,23 +4,18 @@
 
 Hey There 👋
 
-This Python script automates the process of email outreach for lead generation. It leverages Yelp data to identify potential business leads, extracts contact information from their websites, and then sends personalized emails using predefined templates. The goal is to streamline the initial communication with potential clients in a scalable and efficient manner.
+This program automates the process of lead generation and email outreach. It scrapes Yelp data using their API to find their web address, scrapes the company website for their contact info, and then sends personalized emails using predefined templates. The goal is to streamline the initial communication with potential clients in a scalable and efficient manner.
 
 ## Features
 
-- **Yelp Data Extraction**: Gathers business profile URLs from Yelp search results for a specified location and business type.
-- **Contact Information Extraction**: Extracts business website URLs from Yelp profiles and further extracts email addresses from those websites.
+- **Yelp Data Scraping**: Gathers company info from their Yelp page
+- **Company Website Scraping**: Gathers email addresses from the business' website
 - **Email Template Variability**: Utilizes a variety of email templates, ensuring a more natural and personalized outreach experience.
-- **Time Zone Consideration**: Accounts for the recipient's time zone when sending emails to enhance engagement.
-
-## Prerequisites
-
-- Python 3.x
-- Required Python packages can be installed using `pip install -r requirements.txt`.
+- **Automated Email Sending**: Sends the emails from multiple addresses using a remote access code and SMTP servers
 
 ## Configuration
 
-1. **Yelp API Key**: Replace the placeholder `pMIqEfqQPOncWCYTIDUD...` with your Yelp API key in the `get_listing_urls` function.
+1. **Yelp API Key**: Replace the placeholder `pMIqEfqQPOncD...` with your Yelp API key in the `get_listing_urls` function.
 2. **SMTP Configuration**: Configure your SMTP server settings and Gmail account credentials in the `SMTP_CONFIG` section.
 3. **Email Templates and Subjects**: Customize the email templates and subject lines in the `EMAIL_TEMPLATES` and `SUBJECT_LINES` sections.
 
@@ -31,17 +26,11 @@ This Python script automates the process of email outreach for lead generation. 
 
 ## Important Notes
 
-- Be mindful of Yelp's API usage policies to avoid any issues.
-- Adjust the delay between emails in the `main` function to comply with email service provider limits.
+- Be mindful of Yelp's API usage policies to avoid any issues. Make sure not to get IP banned.
+- Adjust the delay between emails in the `main` function to comply with email service provider limits and to not get shut down
 
-## Contributors
+## Other
 
-- [Your Name]
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Acknowledgments
-
-- The script uses the [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) library for web scraping.
+Your comments or suggestions are extremely appreciated, so please reach out!
+Email 📧: iamdylanhoag@gmail.com
+-Dylan Hoag 😊
