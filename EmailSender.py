@@ -1,3 +1,7 @@
+# --------------------------------------------------------------------------------------------------------------- #
+# ----------------------------------- IMPORT LIBRARIES AND TIME ZONE ---------------------------------------------#
+# --------------------------------------------------------------------------------------------------------------- #
+
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -11,18 +15,10 @@ current_date = datetime.datetime.now(pytz.timezone(desired_time_zone))
 day_name = current_date.strftime("%A")
 CURRENT_DAY = day_name
 
-# Gmail SMTP server configuration
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
+# --------------------------------------------------------------------------------------------------------------- #
+# --------------------------------------- EMAIL TEMPLATES AND SUBJECTS -------------------------------------------#
+# --------------------------------------------------------------------------------------------------------------- #
 
-# Gmail account credentials for each sender
-SENDER_ACCOUNTS = [
-    {"username": "dysco712@gmail.com", "password": "zlqc jiro aneg oddt"},
-    {"username": "iamdylanhoag@gmail.com", "password": "hwys aypg refe luea"},
-    {"username": "dylanhoagdigital@gmail.com", "password": "alqi ngon mayg wnfy"}
-]
-
-# Email templates
 EMAIL_TEMPLATES = [
     "Hello!\n\nI'll keep it brief as I appreciate you're busy.\n\nMy name's Dylan, I build websites and run digital ads. I've helped a handful of businesses increase their online presence, and was wondering if I could do the same for your business.\n\nIf you're up for it, I can shoot over some examples of my work and results from my clients!\n\nBest,\n\nDylan Hoag",
     f"Happy {CURRENT_DAY}!\n\nI'll keep it brief as I appreciate you're busy.\n\nMy name's Dylan, I build websites and run digital ads. I've helped a handful of businesses increase their online presence, and was wondering if I could do the same for your business.\n\nIf you're up for it, I can shoot over some examples of my work and results from my clients!\n\nBest,\n\nDylan Hoag",
@@ -42,6 +38,25 @@ SUBJECT_LINES = [
     "Digital Magic",
     "Online Potential"
 ]
+
+# --------------------------------------------------------------------------------------------------------------- #
+# ------------------------------------------- SMTP CONFIG --------------------------------------------------------#
+# --------------------------------------------------------------------------------------------------------------- #
+
+# Gmail SMTP server configuration
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 587
+
+# Gmail account credentials for each sender
+SENDER_ACCOUNTS = [
+    {"username": "dysco712@gmail.com", "password": "zlqc jiro aneg oddt"},
+    {"username": "iamdylanhoag@gmail.com", "password": "hwys aypg refe luea"},
+    {"username": "dylanhoagdigital@gmail.com", "password": "alqi ngon mayg wnfy"}
+]
+
+# --------------------------------------------------------------------------------------------------------------- #
+# --------------------------------------------- FUNCTIONS --------------------------------------------------------#
+# --------------------------------------------------------------------------------------------------------------- #
 
 def send_email(to_address, subject, body, sender_info):
     # Create the email message
@@ -81,6 +96,10 @@ def main():
         # Random delay between emails
         delay = random.uniform(50, 130)
         time.sleep(delay)
+
+# --------------------------------------------------------------------------------------------------------------- #
+# ---------------------------------------------- RUN MAIN --------------------------------------------------------#
+# --------------------------------------------------------------------------------------------------------------- #
 
 if __name__ == "__main__":
     main()
