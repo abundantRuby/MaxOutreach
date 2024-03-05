@@ -63,12 +63,12 @@ def get_listing_urls(yelp_url, max_pages=5, results_per_page=50):
 
             all_listing_urls.update(new_listing_urls)
 
-            time.sleep(10)  # Pause for 10 seconds before the next page
+            time.sleep(5)
         else:
             print(f"Failed to fetch data from Yelp API for {yelp_url}. Status code: {response.status_code}")
             print(response.text)  # Print the response content for debugging
 
-        time.sleep(60)
+        time.sleep(30)
     ALL_PROFILE_URLS.extend(all_listing_urls)
 
 def extract_business_url(profile_url):
@@ -148,7 +148,7 @@ def main():
         print('-------------------- FINAL OUTPUT --------------------')
         print(list(extracted_emails))
     else:
-        print("ERROR: Failed to extract email addresses.")
+        print("CRUCIAL FUCKING ERROR: Failed to extract email addresses.")
 
 # --------------------------------------------------------------------------------------------------------------- #
 # --------------------------------------------- MAIN CODE --------------------------------------------------------#
