@@ -1,6 +1,8 @@
-# Email Outreach Automation and Lead Generation
+# Email Lead Generation and Outreach Automation
 
 ## Overview
+
+Hey There 👋
 
 This Python script automates the process of email outreach for lead generation. It leverages Yelp data to identify potential business leads, extracts contact information from their websites, and then sends personalized emails using predefined templates. The goal is to streamline the initial communication with potential clients in a scalable and efficient manner.
 
