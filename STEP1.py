@@ -101,7 +101,7 @@ def clean_email_string(email_str):
     if email_match:
         # Additional checks to filter out email-like strings with unusual patterns
         email_address = email_match.group()
-        if '@' in email_address and '.' in email_address and len(email_address) <= 40:
+        if ('@' in email_address) and ('.' in email_address) and (len(email_address) <= 40) and ('png' not in email_address) and ('godaddy' not in email_address) and ('example' not in email_address) and ('townsquare' not in email_address) and ('lato' not in email_address):
             return email_address
         
     return None
