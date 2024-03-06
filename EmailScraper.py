@@ -13,8 +13,24 @@ from multiprocessing import Pool
 # --------------------------------------- VARIABLES TO EXECUTE ---------------------------------------------------#
 # --------------------------------------------------------------------------------------------------------------- #
         
-yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=Meridian%2C+ID", 
-             "https://www.yelp.com/search?find_desc=painters&find_loc=McCall%2C+ID"
+yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=Flagstaff%2C+AZ", 
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Sedona%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Prescott%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Kingman%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Bullhead+City%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Lake+Havasu+City%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=St+Johns%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Buckeye%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Pheonix%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Mesa%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Tucson%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Casa+Grande%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Sierra+Vista%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Marana%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Florence%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Apache+Junction%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Scottsdale%2C+AZ",
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Glendale%2C+AZ"
             ]
 
 search_term = "painters"
@@ -63,7 +79,7 @@ def get_listing_urls(yelp_url, max_pages=5, results_per_page=50):
 
             all_listing_urls.update(new_listing_urls)
 
-            time.sleep(5)
+            time.sleep(10)
         else:
             print(f"Failed to fetch data from Yelp API for {yelp_url}. Status code: {response.status_code}")
             print(response.text)  # Print the response content for debugging
@@ -174,7 +190,7 @@ ALL_BUSINESS_URLS = [] #container
 print("Status Update: Collecting Website Url's from Profile Url's")
 
 for profile_url in ALL_PROFILE_URLS:
-    time.sleep(5)
+    time.sleep(10)
     business_urls = extract_business_url(profile_url)
 
     if business_urls:
