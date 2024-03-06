@@ -18,19 +18,7 @@ yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=Flagstaff%
              "https://www.yelp.com/search?find_desc=painters&find_loc=Prescott%2C+AZ",
              "https://www.yelp.com/search?find_desc=painters&find_loc=Kingman%2C+AZ",
              "https://www.yelp.com/search?find_desc=painters&find_loc=Bullhead+City%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Lake+Havasu+City%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=St+Johns%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Buckeye%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Pheonix%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Mesa%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Tucson%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Casa+Grande%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Sierra+Vista%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Marana%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Florence%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Apache+Junction%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Scottsdale%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Glendale%2C+AZ"
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Lake+Havasu+City%2C+AZ"
             ]
 
 search_term = "painters"
