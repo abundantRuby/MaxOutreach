@@ -13,12 +13,11 @@ from multiprocessing import Pool
 # --------------------------------------- VARIABLES TO EXECUTE ---------------------------------------------------#
 # --------------------------------------------------------------------------------------------------------------- #
         
-yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=Flagstaff%2C+AZ", 
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Sedona%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Prescott%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Kingman%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Bullhead+City%2C+AZ",
-             "https://www.yelp.com/search?find_desc=painters&find_loc=Lake+Havasu+City%2C+AZ"
+yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=St+Johns%2C+AZ", 
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Buckeye%2C+AZ", 
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Pheonix%2C+AZ", 
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Mesa%2C+AZ", 
+             "https://www.yelp.com/search?find_desc=painters&find_loc=Tucson%2C+AZ"
             ]
 
 search_term = "painters"
