@@ -80,7 +80,7 @@ def send_email(to_address, subject, body, sender_info):
 
 def main():
     # Email addresses to send to
-    TO_EMAIL_ADDRESSES = []
+    TO_EMAIL_ADDRESSES = ['fauxpaul45@gmail.com', 'division9painting@outlook.com', 'cityscapefinishes@gmail.com', 'Roger@RogerMerrill.com', 'pronghornpaintingllc@gmail.com', 'lmonson@eco-lifecleaningandpainting.com', 'BarNonePaintingAZ@gmail.com', 'groovyfloorshandyman@gmail.com', 'havahandyman@outlook.com', 'jds@jdsimprovements.net', 'info@discountpaintingnv.com', 'office@finishingtouchpaintingaz.com', 'bobby@tricitypros.com', 'cityscapefinishesllc@gmail.com', 'heberpropainting@gmail.com', 'jodebigdhome@yahoo.com', 'info@sierrascolors.com', 'jason@bandmpaintingaz.com', 'zeisjr@gmail.com', 'a1paintingaz9077@gmail.com', 'christerrylv@yahoo.com', 'hello@anbpaintandrepair.com', 'aandcservicesaz@gmail.com', 'scpcpaintco@hotmail.com', 'nevadaqsp@gmail.com', 'mdquerio@yahoo.com', 'info@citationpaintingllc.com', 'INFO@EAZYPAINTING.COM']
 
     for to_address in TO_EMAIL_ADDRESSES:
         # Choose a random template and subject line
