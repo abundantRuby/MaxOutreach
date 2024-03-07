@@ -13,7 +13,7 @@ from multiprocessing import Pool
 # --------------------------------------- VARIABLES TO EXECUTE ---------------------------------------------------#
 # --------------------------------------------------------------------------------------------------------------- #
         
-yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=Pheonix%2C+AZ"]
+yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=Tucson%2C+AZ"]
 
 search_term = "painters"
 
