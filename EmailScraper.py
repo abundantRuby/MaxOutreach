@@ -20,10 +20,6 @@ search_term = "painters"
 
 error_counter = 0
 
-print('test')
-sys.exit(1)
-print('test')
-
 # --------------------------------------------------------------------------------------------------------------- #
 # --------------------------------------- DEFINE FUNCTIONS -------------------------------------------------------#
 # --------------------------------------------------------------------------------------------------------------- #
@@ -72,6 +68,10 @@ def get_listing_urls(yelp_url, max_pages=5, results_per_page=50):
         else:
             print(f"Failed to fetch data from Yelp API for {yelp_url}. Status code: {response.status_code}")
             print(response.text)  # Print the response content for debugging
+            error_counter += 1
+            if error_counter >= 5:
+                    print('Exiting GitHub Action due to too many errors')
+                    sys.exit(1)
 
         time.sleep(30)
     ALL_PROFILE_URLS.extend(all_listing_urls)
@@ -83,7 +83,7 @@ def extract_business_url(profile_url):
     except requests.exceptions.RequestException as e:
         error_counter += 1
         print(f"Error making request to {profile_url}: {e}")
-        if error_counter >= 4:
+        if error_counter >= 5:
                 print('Exiting GitHub Action due to too many errors.')
                 sys.exit(1)
         return []
