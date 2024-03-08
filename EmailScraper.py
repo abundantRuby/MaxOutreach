@@ -8,6 +8,7 @@ import re
 import time
 from bs4 import BeautifulSoup
 from multiprocessing import Pool
+import sys
 
 # --------------------------------------------------------------------------------------------------------------- #
 # --------------------------------------- VARIABLES TO EXECUTE ---------------------------------------------------#
@@ -16,6 +17,8 @@ from multiprocessing import Pool
 yelp_urls = [ "https://www.yelp.com/search?find_desc=painters&find_loc=Mesa%2C+AZ"]
 
 search_term = "painters"
+
+error_counter = 0
 
 # --------------------------------------------------------------------------------------------------------------- #
 # --------------------------------------- DEFINE FUNCTIONS -------------------------------------------------------#
@@ -74,7 +77,11 @@ def extract_business_url(profile_url):
         response = requests.get(profile_url)
         response.raise_for_status()  # Raise an HTTPError for bad responses
     except requests.exceptions.RequestException as e:
+        error_counter += 1
         print(f"Error making request to {profile_url}: {e}")
+        if error_counter >= 4:
+                print('Exiting GitHub Action due to too many errors.')
+                sys.exit(1)
         return []
 
     soup = BeautifulSoup(response.text, 'html.parser')
