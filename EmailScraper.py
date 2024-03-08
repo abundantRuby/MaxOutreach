@@ -77,6 +77,8 @@ def get_listing_urls(yelp_url, max_pages=5, results_per_page=50):
     ALL_PROFILE_URLS.extend(all_listing_urls)
 
 def extract_business_url(profile_url):
+    global error_counter  # Declare error_counter as a global variable
+
     try:
         response = requests.get(profile_url)
         response.raise_for_status()  # Raise an HTTPError for bad responses
@@ -84,8 +86,8 @@ def extract_business_url(profile_url):
         error_counter += 1
         print(f"Error making request to {profile_url}: {e}")
         if error_counter >= 5:
-                print('Exiting GitHub Action due to too many errors.')
-                sys.exit(1)
+            print('Exiting GitHub Action due to too many errors.')
+            sys.exit(1)
         return []
 
     soup = BeautifulSoup(response.text, 'html.parser')
