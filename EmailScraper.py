@@ -14,7 +14,7 @@ import sys
 # --------------------------------------- VARIABLES TO EXECUTE ---------------------------------------------------#
 # --------------------------------------------------------------------------------------------------------------- #
         
-yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=Casa+Grande%2C+AZ", "https://www.yelp.com/search?find_desc=painters&find_loc=Sierra+Vista%2C+AZ", "https://www.yelp.com/search?find_desc=painters&find_loc=Marana%2C+AZ"]
+yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=St+Johns%2C+AZ", "https://www.yelp.com/search?find_desc=painters&find_loc=Buckeye%2C+AZ"]
 
 search_term = "painters"
 
