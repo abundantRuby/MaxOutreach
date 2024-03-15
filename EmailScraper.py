@@ -1,109 +1,57 @@
-# --------------------------------------------------------------------------------------------------------------- #
-# --------------------------------------- IMPORT LIBRARIES -------------------------------------------------------#
-# --------------------------------------------------------------------------------------------------------------- #
-
-import requests
-from urllib.parse import urlparse, parse_qs, unquote, urljoin
-import re
-import time
+from googleplaces import GooglePlaces
+from colorama import Fore, Style
 from bs4 import BeautifulSoup
-from multiprocessing import Pool
-import sys
+import re
+import requests
 
-# --------------------------------------------------------------------------------------------------------------- #
-# --------------------------------------- VARIABLES TO EXECUTE ---------------------------------------------------#
-# --------------------------------------------------------------------------------------------------------------- #
-        
-yelp_urls = ["https://www.yelp.com/search?find_desc=painters&find_loc=St+Johns%2C+AZ", "https://www.yelp.com/search?find_desc=painters&find_loc=Buckeye%2C+AZ"]
+LOC = '33.465218, -112.071320'
+KEY = 'Painters'
+RADIUS = 40000
+YOUR_API_KEY = 'AIzaSyA6gKTmIjiZDezLV1GYmwtyP70ww8Up5qM'
 
-search_term = "painters"
+unwanted_words = ['landscap', 'excavat', 'roofing', 'decorat', 'garden', 'plumb', 'renovat', 'carpent', 'floor', 'electric', 'pest', 'masonry', 'demolition', 'carpet']
+data_list = []
+counter = 0
+total_places = 0
 
-error_counter = 0
+try:
+    google_places = GooglePlaces(YOUR_API_KEY)
+    print(f'{Style.BRIGHT}{Fore.GREEN}GooglePlaces Authentication Complete{Style.RESET_ALL}')
 
-# --------------------------------------------------------------------------------------------------------------- #
-# --------------------------------------- DEFINE FUNCTIONS -------------------------------------------------------#
-# --------------------------------------------------------------------------------------------------------------- #
+    # Initial search
+    query_result = google_places.nearby_search(
+        location=LOC, keyword=KEY,
+        radius=RADIUS, types=[])
 
-def clean_yelp_url(original_url):
-    cleaned_url = original_url.split('?')[0]  # Keep only the business URL without query parameters
-    return cleaned_url
+    if query_result.has_attributions:
+        print(query_result.html_attributions)
 
-def get_city_from_url(yelp_url):
-    query_params = parse_qs(urlparse(yelp_url).query)
-    city = query_params.get('find_loc', [''])[0]
-    return city
+    while True:
+        for place in query_result.places:
+            total_places += 1
 
-def get_listing_urls(yelp_url, max_pages=5, results_per_page=50):
-    all_listing_urls = set()
+            try:
+                place.get_details()
 
-    for page in range(max_pages):
-        start_offset = page * results_per_page
-        city = get_city_from_url(yelp_url)
-        api_url = "https://api.yelp.com/v3/businesses/search"
+                if (place.website) and not any(word in place.name.lower() for word in unwanted_words):
+                    website = (place.website)
+                    data_list.append(website)
+                    counter += 1
 
-        params = {
-            'term': search_term,
-            'location': city,
-            'limit': results_per_page,
-            'offset': start_offset
-        }
+            except Exception as e:
+                print(f"Error getting details for place '{place.name}': {e}")
 
-        headers = {
-            'Authorization': 'Bearer pMIqEfqQPOncWCYTIDUDrx3ObCpuCqmAF4hiwAe6WdtDpMHZk-JKwnsZBt9ViZWy0bfxTwN8ppPG7TCovFJlr8bRN2hsIsrPPP49fkp8l8I-0xWgufHRSldXKwS7ZXYx',
-            'User-Agent': 'Mozilla/5.0'
-        }
-
-        response = requests.get(api_url, params=params, headers=headers)
-
-        if response.status_code == 200:
-            data = response.json()
-            businesses = data.get('businesses', [])
-
-            listing_urls = {clean_yelp_url(business['url']) for business in businesses}
-            new_listing_urls = listing_urls - all_listing_urls  # Only keep new URLs
-
-            all_listing_urls.update(new_listing_urls)
-
-            time.sleep(10)
+        # Check for additional pages of results
+        if 'next_page_token' in query_result.raw_response:
+            next_page_token = query_result.raw_response['next_page_token']
+            query_result = google_places.nearby_search(pagetoken=next_page_token, location=LOC)
         else:
-            print(f"Failed to fetch data from Yelp API for {yelp_url}. Status code: {response.status_code}")
-            print(response.text)  # Print the response content for debugging
-            error_counter += 1
-            if error_counter >= 5:
-                    print('Exiting GitHub Action due to too many errors')
-                    sys.exit(1)
+            break
 
-        time.sleep(30)
-    ALL_PROFILE_URLS.extend(all_listing_urls)
+except Exception as e:
+    print(f'{Style.BRIGHT}{Fore.RED}GooglePlaces Authentication Failed{Style.RESET_ALL}')
+    print(f"Error: {e}")
 
-def extract_business_url(profile_url):
-    global error_counter  # Declare error_counter as a global variable
-
-    try:
-        response = requests.get(profile_url)
-        response.raise_for_status()  # Raise an HTTPError for bad responses
-    except requests.exceptions.RequestException as e:
-        error_counter += 1
-        print(f"Error making request to {profile_url}: {e}")
-        if error_counter >= 5:
-            print('Exiting GitHub Action due to too many errors.')
-            sys.exit(1)
-        return []
-
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    # Select all links with href starting with "/biz_redir"
-    business_links = soup.select('[href^="/biz_redir"]')
-
-    business_urls = set()
-    for business_link in business_links:
-        href = business_link.get('href')
-        # Parse the href to get the actual business URL and remove unwanted text
-        parsed_url = urlparse(href)
-        business_url = unquote(parsed_url.query.split('=')[1]).split('&')[0]
-        business_urls.add(business_url)
-
-    return list(business_urls)
 
 def clean_email_string(email_str):
     # Use a more restrictive regex pattern to filter out invalid email-like strings
@@ -114,8 +62,8 @@ def clean_email_string(email_str):
         email_address = email_match.group()
         if ('@' in email_address) and ('.' in email_address) and (len(email_address) <= 40) and ('png' not in email_address) and ('godaddy' not in email_address) and ('example' not in email_address) and ('townsquare' not in email_address) and ('lato' not in email_address):
             return email_address
-        
     return None
+
 
 def extract_emails_from_url(url):
     try:
@@ -139,65 +87,23 @@ def extract_emails_from_url(url):
 
     except requests.exceptions.RequestException as e:
         return set()
+    
+def extract_emails_from_data_list(data_list):
+    extracted_emails = []
+    for website in data_list:
+        emails = extract_emails_from_url(website)
+        extracted_emails.extend(emails)
+    return extracted_emails
 
-def main():
-    # List of URLs to scrape
-    urls_to_scrape = ALL_BUSINESS_URLS
 
-    # Set the number of processes based on the number of URLs you want to scrape in parallel
-    num_processes = min(len(urls_to_scrape), 4)  # Adjust the number of processes as needed
+extracted_emails = extract_emails_from_data_list(data_list)
 
-    with Pool(processes=num_processes) as pool:
-        # Scrape the websites and get unique email addresses
-        extracted_emails_list = pool.map(extract_emails_from_url, urls_to_scrape)
 
-    # Combine the extracted email sets from different processes
-    extracted_emails = set.union(*extracted_emails_list)
+print('Total Query Places: ' + str(total_places))
+print('Total Results: ' + str(counter))
 
-    if extracted_emails:
-        print("Status Update: Finished Collecting Emails")
-        print('-------------------- FINAL OUTPUT --------------------')
-        print(list(extracted_emails))
-    else:
-        print("CRITICAL FUCKING ERROR: Failed to extract email addresses.")
-
-# --------------------------------------------------------------------------------------------------------------- #
-# --------------------------------------------- MAIN CODE --------------------------------------------------------#
-# --------------------------------------------------------------------------------------------------------------- #
-        
-
-# -- GETS PROFILE URLS FROM YELP LINKS --
-        
-print('STARTED PROGRAM')
-        
-ALL_PROFILE_URLS = []
-
-for i in range(len(yelp_urls)):
-    get_listing_urls(yelp_urls[i], max_pages=10, results_per_page=50)
-    print(f"Status Update: Collected Profile Url's for {i+1}/{len(yelp_urls)} Url's")
-    if (i+1) == (len(yelp_urls)):
-        print("Status Update: Finished Collecting All Profile URL's")
-
-# -- GETS BUSINESS WEBSITE URLS FROM PROFILE URLS -- 
-        
-ALL_BUSINESS_URLS = [] #container
-
-print("Status Update: Collecting Website Url's from Profile Url's")
-
-for profile_url in ALL_PROFILE_URLS:
-    time.sleep(10)
-    business_urls = extract_business_url(profile_url)
-
-    if business_urls:
-        ALL_BUSINESS_URLS.extend(business_urls)
-
-print("Status Update: Finished Collecting Website Url's")
-
-# -- GETS EMAILS FROM WEBSITE URLS --
-
-print("Status Update: Collecting Emails from Website Url's")
-if __name__ == "__main__":
-    main()
+print(f"{Style.BRIGHT}{Fore.MAGENTA}Extracted Emails{Style.RESET_ALL}")
+print(extracted_emails)
 
 
 
